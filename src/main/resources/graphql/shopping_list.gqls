@@ -1,0 +1,32 @@
+type Item {
+    id: Float!
+    title: String!
+    text: String
+    quantity: Int!
+    completed: Boolean!
+}
+
+type ShoppingList{
+    id: Float!
+    name: String
+    items: [Item]
+}
+
+type User {
+    id: Float!
+    userName: String!
+    list: ShoppingList
+}
+
+# The Root Query for the application
+type Query {
+    user(userId: Float): User!
+}
+
+# Mutation for the application
+type Mutation {
+    createUser(userName: String!) : User!
+    createList(name: String, userId: Float!) : ShoppingList!
+    createItem(listId: Float!, title: String!, text: String, quantity: Int!) : Item!
+    completeItem(itemId : Float!) : Item!
+}
